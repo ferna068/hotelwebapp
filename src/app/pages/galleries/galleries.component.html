@@ -1,0 +1,97 @@
+<div class="gallery-container">
+  <!-- Page Header Section -->
+  <section class="page-header position-relative">
+    <div class="container-fluid px-0">
+      <div class="header-content text-center position-relative">
+        <!-- Title -->
+        <h1 class="page-title display-4 text-white mb-0">Nuestra Galeria</h1>
+
+        <!-- Special Offer Badge -->
+        <div class="special-offer position-absolute">
+          <img
+            src="assets/img/special-offer-yellow-main.png"
+            alt="Special Offer"
+            class="img-fluid special-offer-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Room Gallery Section -->
+  <section class="gallery-section py-5">
+    <div class="container">
+      <!-- Header -->
+      <header class="text-center mb-5">
+        <h2 class="display-4 mb-3">Photo Gallery</h2>
+        <div class="divider-custom mb-4">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon">
+            <i class="fas fa-camera"></i>
+          </div>
+          <div class="divider-custom-line"></div>
+        </div>
+        <p class="lead text-muted">
+          Explore our beautiful hotel through our photo gallery
+        </p>
+      </header>
+
+      <!-- Gallery Grid -->
+      <div class="row g-4">
+        @for (image of images; track image.id) {
+        <div class="col-6 col-md-4 col-lg-3">
+          <div class="gallery-item" (click)="openModal(image)">
+            <img
+              [src]="image.src"
+              [alt]="image.alt"
+              class="img-fluid rounded shadow-sm"
+            />
+            <div class="gallery-overlay">
+              <i class="fas fa-search-plus"></i>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="galleryModal"
+      tabindex="-1"
+      [class.show]="selectedImage"
+      [style.display]="selectedImage ? 'block' : 'none'"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          @if (selectedImage) {
+          <div class="modal-header border-0">
+            <div>
+              <h5 class="modal-title">{{ selectedImage.caption }}</h5>
+              <p class="modal-title">{{ selectedImage.alt }}</p>
+            </div>
+            <button
+              type="button"
+              class="btn-close"
+              (click)="selectedImage = null"
+            ></button>
+          </div>
+          <div class="modal-body p-0">
+            <img
+              [src]="selectedImage.src"
+              [alt]="selectedImage.alt"
+              class="img-fluid"
+            />
+          </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal Backdrop -->
+    @if (selectedImage) {
+    <div class="modal-backdrop fade show" (click)="selectedImage = null"></div>
+    }
+  </section>
+</div>

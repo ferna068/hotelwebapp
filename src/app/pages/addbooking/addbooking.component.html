@@ -1,0 +1,510 @@
+<div class="add-booking-container">
+  <!-- Page Header Section -->
+  <section class="page-header position-relative">
+    <div class="container-fluid px-0">
+      <div class="header-content text-center position-relative">
+        <!-- Title -->
+        <h1 class="page-title display-4 text-white mb-0">Reserva Aqui</h1>
+
+        <!-- Special Offer Badge -->
+        <div class="special-offer position-absolute">
+          <img
+            src="assets/img/special-offer-yellow-main.png"
+            alt="Special Offer"
+            class="img-fluid special-offer-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Booking Section-->
+  <section class="booking-section py-5">
+    <div class="container">
+      <!-- Tabs de navegación -->
+      <ul class="nav nav-pills nav-justified mb-4">
+        <li class="nav-item" *ngFor="let step of [1, 2, 3, 4]">
+          <button
+            class="nav-link position-relative"
+            [class.active]="activeTab === step"
+            (click)="setActiveTab(step)"
+          >
+            <span class="step-number">{{ step }}</span>
+            <span class="d-block mt-2">
+              {{
+                step === 1
+                  ? "Información de reserva"
+                  : step === 2
+                  ? "Información personal"
+                  : step === 3
+                  ? "Información de pago"
+                  : "Reserva completada"
+              }}
+            </span>
+          </button>
+        </li>
+      </ul>
+
+      <!-- Contenido de las tabs -->
+      <div class="tab-content">
+        <!-- Tab 1: Información de reserva -->
+        <div
+          class="tab-pane fade"
+          [class.show]="activeTab === 1"
+          [class.active]="activeTab === 1"
+        >
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <div class="row">
+                <!-- Imagen de la habitación -->
+                <div class="col-md-4">
+                  <img
+                    src="assets/img/booking-step-one.jpg"
+                    class="img-fluid rounded"
+                    alt="Room"
+                  />
+                </div>
+
+                <!-- Detalles de la habitación -->
+                <div class="col-md-8">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <h4>Habitación Deluxe</h4>
+                    <h5>$180 <small class="text-muted">/noche</small></h5>
+                  </div>
+
+                  <!-- Estrellas -->
+                  <div class="mb-3">
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-warning"></i>
+                    <i class="fa fa-star text-dark-emphasis"></i>
+                  </div>
+
+                  <!-- Amenidades -->
+                  <div class="row g-3">
+                    <div class="col-6 col-md-3">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="assets/img/home-facilities-icon-one.png"
+                          alt=""
+                        />
+                        <span>Desayuno</span>
+                      </div>
+                      <div class="d-flex align-items-center mt-4">
+                        <img
+                          src="assets/img/home-facilities-icon-four.png"
+                          alt=""
+                        />
+                        <span>Servicios</span>
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="assets/img/home-facilities-icon-two.png"
+                          alt=""
+                        />
+                        <span>Aire Acondicionado</span>
+                      </div>
+                      <div class="d-flex align-items-center mt-4">
+                        <img
+                          src="assets/img/home-facilities-icon-ten.png"
+                          alt=""
+                        />
+                        <span>Gimnasio</span>
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="assets/img/home-facilities-icon-eight.png"
+                          alt=""
+                        />
+                        <span>Estacionamiento</span>
+                      </div>
+                      <div class="d-flex align-items-center mt-4">
+                        <img
+                          src="assets/img/home-facilities-icon-five.png"
+                          alt=""
+                        />
+                        <span>Television</span>
+                      </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                      <div class="d-flex align-items-center">
+                        <img
+                          src="assets/img/home-facilities-icon-three.png"
+                          alt=""
+                        />
+                        <span>Mascotas</span>
+                      </div>
+                      <div class="d-flex align-items-center mt-4">
+                        <img
+                          src="assets/img/home-facilities-icon-twelve.png"
+                          alt=""
+                        />
+                        <span>Internet</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Formulario de reserva -->
+              <form class="row g-3 mt-4">
+                <div class="col-md-6 col-lg-3">
+                  <div class="form-floating">
+                    <input type="date" class="form-control" id="checkIn" />
+                    <label for="checkIn">Llegada</label>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="form-floating">
+                    <input type="date" class="form-control" id="checkOut" />
+                    <label for="checkOut">Salida</label>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="adults">
+                      <option value="1">1 Adulto</option>
+                      <option value="2">2 Adultos</option>
+                      <option value="3">3 Adultos</option>
+                    </select>
+                    <label for="adults">Adultos</label>
+                  </div>
+                </div>
+                <div class="col-md-6 col-lg-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="children">
+                      <option value="0">0 Niños</option>
+                      <option value="1">1 Niño</option>
+                      <option value="2">2 Niños</option>
+                    </select>
+                    <label for="children">Niños</label>
+                  </div>
+                </div>
+              </form>
+
+              <!-- Resumen de costos -->
+              <div class="card mt-4">
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <table class="table">
+                      <tr>
+                        <td>1 Habitación (2 Adultos)</td>
+                        <td class="text-end">$180 x 5 noches</td>
+                        <td class="text-end">$900</td>
+                      </tr>
+                      <tr>
+                        <td>Impuestos (10%)</td>
+                        <td></td>
+                        <td class="text-end">$90</td>
+                      </tr>
+                      <tr class="fw-bold">
+                        <td>Total</td>
+                        <td></td>
+                        <td class="text-end">$990</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: Información Personal -->
+        <div
+          class="tab-pane fade"
+          [class.show]="activeTab === 2"
+          [class.active]="activeTab === 2"
+        >
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Información Personal</h4>
+
+              <form class="row g-3">
+                <!-- Fila 1 -->
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="firstName"
+                      placeholder="Nombre"
+                    />
+                    <label for="firstName">Nombre</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="lastName"
+                      placeholder="Apellido"
+                    />
+                    <label for="lastName">Apellido</label>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input
+                      type="email"
+                      class="form-control"
+                      id="email"
+                      placeholder="Email"
+                    />
+                    <label for="email">Email</label>
+                  </div>
+                </div>
+
+                <!-- Fila 2 -->
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <input
+                      type="tel"
+                      class="form-control"
+                      id="phone"
+                      placeholder="Teléfono"
+                    />
+                    <label for="phone">Teléfono</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="smokingPreference">
+                      <option value="">Seleccione una opción</option>
+                      <option value="smoking">Fumador</option>
+                      <option value="non-smoking">No fumador</option>
+                    </select>
+                    <label for="smokingPreference"
+                      >Preferencia de fumador</label
+                    >
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="parkingNeeded">
+                      <option value="">Seleccione una opción</option>
+                      <option value="yes">Sí necesito</option>
+                      <option value="no">No necesito</option>
+                    </select>
+                    <label for="parkingNeeded">¿Necesita parking?</label>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating">
+                    <select class="form-select" id="withPet">
+                      <option value="">Seleccione una opción</option>
+                      <option value="yes">Con mascota</option>
+                      <option value="no">Sin mascota</option>
+                    </select>
+                    <label for="withPet">¿Viene con mascota?</label>
+                  </div>
+                </div>
+
+                <!-- Fila 3 -->
+                <div class="col-12">
+                  <div class="form-floating">
+                    <textarea
+                      class="form-control"
+                      id="specialRequests"
+                      style="height: 100px"
+                      placeholder="Solicitudes especiales"
+                    ></textarea>
+                    <label for="specialRequests">Solicitudes especiales</label>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: Información de Pago -->
+        <div
+          class="tab-pane fade"
+          [class.show]="activeTab === 3"
+          [class.active]="activeTab === 3"
+        >
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="card-title mb-4">Información de Pago</h4>
+
+              <div class="alert alert-info mb-4">
+                <i class="bi bi-info-circle me-2"></i>
+                Todos los pagos son procesados de forma segura
+              </div>
+
+              <form class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cardHolder"
+                      placeholder="Titular de la tarjeta"
+                    />
+                    <label for="cardHolder">Titular de la tarjeta</label>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cardNumber"
+                      placeholder="Número de tarjeta"
+                    />
+                    <label for="cardNumber">Número de tarjeta</label>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="expiryMonth">
+                      <option value="">Mes</option>
+                      @for (month of months; track month) {
+                      <option [value]="month">{{ month }}</option>
+                      }
+                    </select>
+                    <label for="expiryMonth">Mes de expiración</label>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <select class="form-select" id="expiryYear">
+                      <option value="">Año</option>
+                      @for (year of years; track year) {
+                      <option [value]="year">{{ year }}</option>
+                      }
+                    </select>
+                    <label for="expiryYear">Año de expiración</label>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating">
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cvv"
+                      placeholder="CVV"
+                    />
+                    <label for="cvv">CVV</label>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div
+                    class="d-flex justify-content-between align-items-center"
+                  >
+                    <div class="payment-methods">
+                      <img
+                        src="assets/img/visa.png"
+                        alt="Visa"
+                        class="me-sm-1"
+                      />
+                      <img
+                        src="assets/img/maestro.png"
+                        alt="Mastercard"
+                        class="me-sm-1"
+                      />
+                      <img
+                        src="assets/img/american-express.png"
+                        alt="American Express"
+                        class="me-sm-1"
+                      />
+                      <img src="assets/img/paypal.png" alt="PayPal" />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Reserva Completada -->
+        <div
+          class="tab-pane fade"
+          [class.show]="activeTab === 4"
+          [class.active]="activeTab === 4"
+        >
+          <div class="card shadow-sm">
+            <div class="card-body text-center py-5">
+              <div class="mb-4">
+                <i
+                  class="bi bi-check-circle-fill text-success"
+                  style="font-size: 4rem"
+                ></i>
+              </div>
+
+              <h4 class="mb-3">¡Reserva Confirmada!</h4>
+              <p class="text-muted mb-4">
+                Su reserva ha sido confirmada y procesada exitosamente.<br />
+                Hemos enviado los detalles de la reserva a su correo
+                electrónico.
+              </p>
+
+              <div class="card mb-4 mx-auto" style="max-width: 500px">
+                <div class="card-body">
+                  <h5 class="card-title mb-4">Resumen de la Reserva</h5>
+                  <div class="table-responsive">
+                    <table class="table table-borderless">
+                      <tr>
+                        <td class="text-start">Número de Reserva:</td>
+                        <td class="text-end fw-bold">#BOK123456</td>
+                      </tr>
+                      <tr>
+                        <td class="text-start">Habitación:</td>
+                        <td class="text-end">Deluxe Room</td>
+                      </tr>
+                      <tr>
+                        <td class="text-start">Check-in:</td>
+                        <td class="text-end">{{ checkInDate | date }}</td>
+                      </tr>
+                      <tr>
+                        <td class="text-start">Check-out:</td>
+                        <td class="text-end">{{ checkOutDate | date }}</td>
+                      </tr>
+                      <tr>
+                        <td class="text-start">Total Pagado:</td>
+                        <td class="text-end fw-bold">$440</td>
+                      </tr>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" routerLink="/booking">
+                Ver mis reservas
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Botones de navegación -->
+        <div class="d-flex justify-content-between mt-4">
+          <button
+            class="btn btn-outline-primary"
+            *ngIf="activeTab > 1"
+            (click)="previousStep()"
+          >
+            Anterior
+          </button>
+          <button
+            class="btn btn-primary ms-auto"
+            *ngIf="activeTab < 4"
+            (click)="nextStep()"
+          >
+            Siguiente
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

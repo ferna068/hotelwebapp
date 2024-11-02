@@ -1,0 +1,224 @@
+<div class="booking-container">
+  <!-- Page Header Section -->
+  <section class="page-header position-relative">
+    <div class="container-fluid px-0">
+      <div class="header-content text-center position-relative">
+        <!-- Title -->
+        <h1 class="page-title display-4 text-white mb-0">Mis Reservas</h1>
+
+        <!-- Special Offer Badge -->
+        <div class="special-offer position-absolute">
+          <img
+            src="assets/img/special-offer-yellow-main.png"
+            alt="Special Offer"
+            class="img-fluid special-offer-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Dashboard Section-->
+  <div class="dashboard-container">
+    <div class="row g-0">
+      <!-- Sidebar -->
+      <div class="col-md-3 dashboard-sidebar">
+        <div class="p-4">
+          <!-- User Info -->
+          <div class="user-profile mb-4">
+            <div class="user-avatar">
+              <img [src]="user.avatar" [alt]="user.name" class="avatar-img" />
+            </div>
+            <div class="user-info">
+              <h4 class="user-name">{{ user.name }}</h4>
+              <p class="user-location">
+                <i class="fas fa-map-marker-alt"></i>
+                {{ user.location }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Navigation -->
+          <nav class="dashboard-nav">
+            <ul class="list-unstyled">
+              @for (item of menuItems; track item.label) {
+              <li>
+                <a
+                  [routerLink]="item.route"
+                  routerLinkActive="active"
+                  class="nav-link"
+                >
+                  <i [class]="item.icon"></i>
+                  <span>{{ item.label }}</span>
+                </a>
+              </li>
+              }
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-6 dashboard-main">
+        <div class="p-4">
+          <!-- Welcome Message -->
+          <div class="welcome-section mb-4">
+            <p class="text-muted mb-1">Hi {{ user.name }},</p>
+            <h3>Welcome to your dashboard</h3>
+          </div>
+
+          <!-- Bookings Table -->
+          <div class="card shadow-sm">
+            <div class="card-body">
+              <h4 class="card-title mb-4">
+                <i class="fas fa-calendar-check me-2"></i>
+                My Bookings
+              </h4>
+
+              <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                  <thead class="table-light">
+                    <tr>
+                      <th>No</th>
+                      <th>Name</th>
+                      <th>Phone</th>
+                      <th>Location</th>
+                      <th>Dates</th>
+                      <th>Members</th>
+                      <th>Status</th>
+                      <th class="text-center">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @for (booking of bookings; track booking.id) {
+                    <tr>
+                      <td>{{ booking.id }}</td>
+                      <td>{{ booking.name }}</td>
+                      <td>{{ booking.phone }}</td>
+                      <td>
+                        <span class="text-primary">{{ booking.city }}</span
+                        >,
+                        {{ booking.country }}
+                      </td>
+                      <td>
+                        <div class="d-flex flex-column">
+                          <small class="text-muted">
+                            <i class="fas fa-plane-arrival me-1"></i>
+                            {{ booking.arrival }}
+                          </small>
+                          <small class="text-muted">
+                            <i class="fas fa-plane-departure me-1"></i>
+                            {{ booking.departure }}
+                          </small>
+                        </div>
+                      </td>
+                      <td>
+                        <span class="badge bg-info">
+                          <i class="fas fa-users me-1"></i>
+                          {{ booking.members }}
+                        </span>
+                      </td>
+                      <td>
+                        <span
+                          class="badge"
+                          [class.bg-success]="booking.status === 'success'"
+                          [class.bg-warning]="booking.status === 'pending'"
+                          [class.bg-danger]="booking.status === 'cancelled'"
+                        >
+                          {{ booking.status | titlecase }}
+                        </span>
+                      </td>
+                      <td>
+                        <div class="d-flex justify-content-center gap-2">
+                          <button
+                            class="btn btn-sm btn-outline-primary"
+                            (click)="editBooking(booking)"
+                            [disabled]="booking.status === 'cancelled'"
+                            [attr.data-tooltip]="
+                              booking.status === 'cancelled'
+                                ? 'No se puede editar'
+                                : 'Editar booking'
+                            "
+                          >
+                            <i class="fas fa-edit"></i>
+                          </button>
+                          @if (booking.status !== 'cancelled') {
+                          <button
+                            class="btn btn-sm btn-outline-danger"
+                            (click)="cancelBooking(booking)"
+                            data-tooltip="Cancel booking"
+                          >
+                            <i class="fas fa-times"></i>
+                          </button>
+                          }
+                        </div>
+                      </td>
+                    </tr>
+                    } @empty {
+                    <tr>
+                      <td colspan="8" class="text-center py-4">
+                        <div class="text-muted">
+                          <i class="fas fa-calendar-times fa-2x mb-2"></i>
+                          <p>No bookings found</p>
+                        </div>
+                      </td>
+                    </tr>
+                    }
+                  </tbody>
+                </table>
+              </div>
+
+              <!-- Pagination -->
+              <nav aria-label="Page navigation" class="mt-4">
+                <ul class="pagination justify-content-center">
+                  <li class="page-item disabled">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <i class="fas fa-chevron-left"></i>
+                    </a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <i class="fas fa-chevron-right"></i>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notifications -->
+      <div class="col-md-3 dashboard-notifications">
+        <div class="p-4">
+          <h4 class="mb-4">
+            <i class="fas fa-bell me-2"></i>
+            Notifications ({{ notifications.length }})
+          </h4>
+
+          <div class="notifications-list">
+            @for (notification of notifications; track notification.id) {
+            <div class="notification-item">
+              <img
+                [src]="notification.image"
+                [alt]="notification.title"
+                class="notification-image"
+              />
+              <div class="notification-content">
+                <h5>{{ notification.title }}</h5>
+                <p>{{ notification.description }}</p>
+                <small class="text-muted">{{ notification.time }}</small>
+              </div>
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

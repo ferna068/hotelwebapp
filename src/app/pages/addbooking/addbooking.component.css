@@ -1,0 +1,159 @@
+.add-booking-container {
+    width: 100%;
+}
+
+.page-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('../../../assets/img/gallery-breadcrumb.jpg') center/cover no-repeat;
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+    overflow: hidden;
+
+    /* Header Content */
+    .header-content {
+        width: 100%;
+        padding: 2rem;
+
+        .page-title {
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: -15px;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: #f7c411;
+            }
+        }
+    }
+
+    /* Special Offer Badge */
+    .special-offer {
+        top: 20px;
+        right: 50px;
+        z-index: 3;
+        animation: float 3s ease-in-out infinite;
+
+        .special-offer-img {
+            max-width: 150px;
+            filter: drop-shadow(2px 4px 6px rgba(0, 0, 0, 0.2));
+        }
+    }
+}
+
+/* Floating Animation */
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .page-header {
+        height: 200px;
+        margin-bottom: 3rem;
+
+        .header-content {
+            padding: 1rem;
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+
+        .special-offer {
+            right: 20px;
+
+            .special-offer-img {
+                max-width: 100px;
+            }
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    .page-header {
+        height: 150px;
+        margin-bottom: 2rem;
+
+        .header-content {
+            .page-title {
+                font-size: 1.5rem;
+            }
+        }
+
+        .special-offer {
+            right: 10px;
+            top: 10px;
+
+            .special-offer-img {
+                max-width: 80px;
+            }
+        }
+    }
+}
+
+.booking-section {
+    background-color: #f8f9fa;
+}
+
+.nav-pills {
+    .nav-link {
+        border-radius: 0;
+        padding: 1rem;
+
+        &.active {
+            background-color: var(--bs-primary);
+        }
+
+        .step-number {
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: #e9ecef;
+            color: var(--bs-dark);
+        }
+
+        &.active .step-number {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+    }
+}
+
+.table {
+
+    th,
+    td {
+        padding: 1rem;
+        vertical-align: middle;
+    }
+}
+
+.amenity-icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}

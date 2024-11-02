@@ -1,0 +1,88 @@
+<div class="service-container">
+  <!-- Page Header Section -->
+  <section class="page-header position-relative">
+    <div class="container-fluid px-0">
+      <div class="header-content text-center position-relative">
+        <!-- Title -->
+        <h1 class="page-title display-4 text-white mb-0">Nuestros Servicios</h1>
+
+        <!-- Special Offer Badge -->
+        <div class="special-offer position-absolute">
+          <img
+            src="assets/img/special-offer-yellow-main.png"
+            alt="Special Offer"
+            class="img-fluid special-offer-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Services Room Section-->
+  <section class="services-section py-5">
+    <div class="container">
+      <!-- Encabezado -->
+      <header class="text-center mb-5">
+        <h2 class="display-4 mb-3">Hotel Services</h2>
+        <div class="divider-custom mb-4">
+          <div class="divider-custom-line"></div>
+          <div class="divider-custom-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="divider-custom-line"></div>
+        </div>
+        <p class="lead text-muted">
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+          nonummy nibh euismod tincidunt ut laoreet.
+        </p>
+      </header>
+
+      <!-- Lista de Servicios -->
+      <div class="row g-4">
+        @for (service of services; track service.id) {
+        <div class="col-12">
+          <div class="card service-card h-100 border-0 shadow-sm">
+            <div class="row g-0">
+              <!-- Imagen del Servicio -->
+              <div class="col-md-4">
+                <img
+                  [src]="service.image"
+                  [alt]="service.title"
+                  class="img-fluid rounded-start h-100 object-fit-cover"
+                />
+              </div>
+
+              <!-- Contenido del Servicio -->
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h3 class="card-title h4 mb-3">{{ service.title }}</h3>
+
+                  <div class="d-flex gap-3 text-muted mb-3">
+                    <small>
+                      <i class="far fa-calendar-alt me-1"></i>
+                      {{ service.date }}
+                    </small>
+                    <small>
+                      <i class="far fa-user me-1"></i>
+                      {{ service.author }}
+                    </small>
+                  </div>
+
+                  @for (paragraph of service.description; track $index) {
+                  <p class="card-text">{{ paragraph }}</p>
+                  }
+
+                  <a href="#" class="btn btn-primary">
+                    Read More
+                    <i class="fas fa-arrow-right ms-2"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </section>
+</div>

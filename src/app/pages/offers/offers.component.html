@@ -1,0 +1,141 @@
+<div class="offers-container">
+  <!-- Page Header Section -->
+  <section class="page-header position-relative">
+    <div class="container-fluid px-0">
+      <div class="header-content text-center position-relative">
+        <!-- Title -->
+        <h1 class="page-title display-4 text-white mb-0">Room Offers</h1>
+
+        <!-- Special Offer Badge -->
+        <div class="special-offer position-absolute">
+          <img
+            src="assets/img/special-offer-yellow-main.png"
+            alt="Special Offer"
+            class="img-fluid special-offer-img"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Offer Section-->
+  <section class="inn-body-section pad-bot-55">
+    <div class="container">
+      <!-- Header -->
+      <div class="page-head text-center mb-5">
+        <h2 class="mb-3">Promociones del mes</h2>
+        <div class="head-title d-flex justify-content-center gap-2 mb-3">
+          <div class="hl-1"></div>
+          <div class="hl-2"></div>
+          <div class="hl-3"></div>
+        </div>
+        <p class="text-muted">
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.
+        </p>
+      </div>
+  
+      <!-- Rooms List -->
+      @for (room of rooms; track room.id) {
+        <div class="room position-relative mb-4">
+          <!-- Featured Tag -->
+          @if (room.isFeatured || room.specialTag) {
+            <div class="ribbon ribbon-top-left">
+              <span>{{ room.specialTag || 'Featured' }}</span>
+            </div>
+          }
+  
+          <div class="row g-0 align-items-center">
+            <!-- Room Image -->
+            <div class="col-md-3">
+              <img [src]="room.image" [alt]="room.name" class="img-fluid room-image">
+            </div>
+  
+            <!-- Room Info -->
+            <div class="col-md-3">
+              <div class="room-info p-3">
+                <h4 class="mb-3">{{ room.name }}</h4>
+                
+                <!-- Rating -->
+                <div class="rating mb-3">
+                  @for (star of getRatingStars(room.rating); track $index) {
+                    <i class="fa" 
+                       [class.fa-star]="star === 2"
+                       [class.fa-star-half-o]="star === 1"
+                       [class.fa-star-o]="star === 0">
+                    </i>
+                  }
+                  <img src="assets/img/h-trip.png" alt="TripAdvisor" class="ms-2">
+                  <span class="ms-2">Excellent {{ room.rating }} / 5</span>
+                </div>
+  
+                <!-- Capacity -->
+                <div class="capacity">
+                  <div class="d-flex gap-3">
+                    <span>
+                      <i class="fas fa-user me-2"></i>
+                      Max Adults: {{ room.maxAdults }}
+                    </span>
+                    <span>
+                      <i class="fas fa-child me-2"></i>
+                      Max Children: {{ room.maxChildren }}
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <!-- Amenities -->
+            <div class="col-md-2">
+              <ul class="amenities-list list-unstyled p-3">
+                @for (amenity of room.amenities; track amenity) {
+                  <li>
+                    <i class="fas fa-check me-2"></i>
+                    {{ amenity }}
+                  </li>
+                }
+              </ul>
+            </div>
+  
+            <!-- Price -->
+            <div class="col-md-2">
+              <div class="price-info p-3 text-center">
+                <p class="text-muted mb-2">Price for 1 night</p>
+                <div class="price mb-2">
+                  <span class="original-price text-decoration-line-through me-2">
+                    ${{ room.priceOriginal }}
+                  </span>
+                  <span class="discount-price text-primary fw-bold">
+                    ${{ room.priceDiscount }}
+                  </span>
+                </div>
+                <p class="text-danger small">Non Refundable</p>
+              </div>
+            </div>
+  
+            <!-- Booking -->
+            <div class="col-md-2">
+              <div class="booking-info p-3 text-center">
+                <div class="availability mb-2">
+                  <span class="badge" 
+                        [class.bg-success]="room.isAvailable"
+                        [class.bg-danger]="!room.isAvailable">
+                    {{ room.isAvailable ? 'Available' : 'Not Available' }}
+                  </span>
+                </div>
+                <p class="text-muted small mb-3">Price for 1 night</p>
+                <a class="btn btn-primary"
+                   [class.disabled]="!room.isAvailable">
+                  Book Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      } @empty {
+        <div class="alert alert-info text-center">
+          No rooms available at the moment.
+        </div>
+      }
+    </div>
+  </section>
+</div>

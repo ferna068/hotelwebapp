@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-contactus',
@@ -8,5 +8,4 @@ import { Component } from '@angular/core';
   styleUrl: './contactus.component.css'
 })
 export class ContactusComponent {
-
 }
