@@ -1,0 +1,118 @@
+.home-container {
+    width: 100%;
+  }
+  
+  /* Slider Styles */
+  .slider-section {
+    position: relative;
+    height: 33.33vh;
+    min-height: 300px;
+    
+    .special-offer {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 10;
+      max-width: 150px;
+    }
+    
+    .carousel {
+      height: 100%;
+      
+      .carousel-item {
+        height: 33.33vh;
+        min-height: 300px;
+        
+        img {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
+      }
+      
+      .carousel-caption {
+        top: 40%;
+        transform: translateY(-50%);
+        text-align: left;
+        
+        .slider-title {
+          font-family: 'Playfair Display', serif;
+          color: #131e2a;
+          font-size: 2rem;
+          line-height: 1.2;
+          text-shadow: 1px 1px 3px rgba(255,255,255,0.5);
+        }
+      }
+    }
+  }
+  
+  /* Booking Section Styles */
+  .booking-section {
+    margin-top: -50px; /* Para superponer ligeramente sobre el slider */
+    margin-bottom: 30px;
+    position: relative;
+    z-index: 20;
+    
+    .booking-form {
+      border-radius: 8px;
+      
+      .booking-title {
+        h6 {
+          color: #666;
+          font-size: 0.875rem;
+        }
+        
+        p {
+          color: #333;
+        }
+      }
+      
+      .form-control, .form-select {
+        border: none;
+        border-bottom: 2px solid rgba(0,0,0,0.1);
+        border-radius: 0;
+        
+        &:focus {
+          box-shadow: none;
+          border-color: #f7c411;
+        }
+      }
+      
+      .btn-warning {
+        background-color: #f7c411;
+        border-color: #9e811a;
+        color: #313a45;
+        font-weight: 500;
+        
+        &:hover {
+          background-color: darken(#f7c411, 5%);
+        }
+      }
+    }
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 991.98px) {
+    .slider-section {
+      height: 33.33vh;
+      min-height: 250px;
+      
+      .carousel-caption {
+        .slider-title {
+          font-size: 1.5rem;
+        }
+      }
+      
+      .special-offer {
+        max-width: 100px;
+      }
+    }
+    
+    .booking-section {
+      margin-top: -30px;
+      
+      .booking-form {
+        padding: 1rem !important;
+      }
+    }
+  }
